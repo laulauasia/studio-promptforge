@@ -1,0 +1,81 @@
+import type { PromptTemplate } from '@/types';
+import { MessageSquare, Edit3, Mail, FileText, Search } from 'lucide-react';
+
+export const promptTemplates: PromptTemplate[] = [
+  {
+    id: 'tweet',
+    name: 'Twitter Post',
+    description: 'Craft a concise and engaging tweet.',
+    category: 'Social Media',
+    template: 'Compose a tweet about [topic], focusing on its [key_benefit]. Ensure it is engaging and includes the hashtag #[main_hashtag]. Optional extra hashtags: [optional_hashtags]. Call to action: [cta].',
+    placeholders: [
+      { name: 'topic', label: 'Topic/Product', defaultValue: 'our new AI tool' },
+      { name: 'key_benefit', label: 'Key Benefit', defaultValue: 'boosts productivity by 30%' },
+      { name: 'main_hashtag', label: 'Main Hashtag', defaultValue: 'AI' },
+      { name: 'optional_hashtags', label: 'Optional Hashtags (comma-separated)', defaultValue: 'Innovation, Tech' },
+      { name: 'cta', label: 'Call to Action (optional)', defaultValue: 'Learn more on our site!' },
+    ],
+    icon: MessageSquare,
+  },
+  {
+    id: 'blog-intro',
+    name: 'Blog Post Introduction',
+    description: 'Generate a captivating introduction for a blog post.',
+    category: 'Blog Articles',
+    template: 'Write an engaging introduction for a blog post titled "[blog_title]". The main theme is [main_theme] and the target audience is [target_audience]. Hook the reader by mentioning [hook_point].',
+    placeholders: [
+      { name: 'blog_title', label: 'Blog Title', defaultValue: 'The Future of AI in Content Creation' },
+      { name: 'main_theme', label: 'Main Theme', defaultValue: 'how AI is revolutionizing writing', isTextArea: true },
+      { name: 'target_audience', label: 'Target Audience', defaultValue: 'content creators and marketers' },
+      { name: 'hook_point', label: 'Hook Point', defaultValue: 'a surprising statistic about AI adoption' },
+    ],
+    icon: Edit3,
+  },
+  {
+    id: 'email-subject',
+    name: 'Email Subject Line',
+    description: 'Create a compelling email subject line.',
+    category: 'Emails',
+    template: 'Generate 5 catchy email subject lines for an email about [product_service] targeting [audience_segment]. The key message is [key_message]. Desired tone: [tone].',
+    placeholders: [
+      { name: 'product_service', label: 'Product/Service', defaultValue: 'our new analytics platform' },
+      { name: 'audience_segment', label: 'Audience Segment', defaultValue: 'small business owners' },
+      { name: 'key_message', label: 'Key Message', defaultValue: 'save time and increase profits' },
+      { name: 'tone', label: 'Desired Tone (e.g., urgent, friendly)', defaultValue: 'friendly and intriguing' },
+    ],
+    icon: Mail,
+  },
+  {
+    id: 'product-description',
+    name: 'Product Description',
+    description: 'Write a persuasive product description.',
+    category: 'Marketing',
+    template: 'Craft a compelling product description for [product_name]. It is a [product_category] that helps [target_customer] to [solve_problem] by offering [unique_features]. Highlight these benefits: [benefit1], [benefit2], [benefit3]. The tone should be [tone]. Max length: [max_length] words.',
+    placeholders: [
+      { name: 'product_name', label: 'Product Name', defaultValue: 'SynthWave Pro' },
+      { name: 'product_category', label: 'Product Category', defaultValue: 'music production software' },
+      { name: 'target_customer', label: 'Target Customer', defaultValue: 'electronic music producers' },
+      { name: 'solve_problem', label: 'Solve Problem/Achieve Goal', defaultValue: 'create unique soundscapes effortlessly' },
+      { name: 'unique_features', label: 'Unique Features (comma-separated)', defaultValue: 'AI-powered synth engine, intuitive UI, vast preset library', isTextArea: true },
+      { name: 'benefit1', label: 'Benefit 1', defaultValue: 'Unleash creativity' },
+      { name: 'benefit2', label: 'Benefit 2', defaultValue: 'Speed up workflow' },
+      { name: 'benefit3', label: 'Benefit 3', defaultValue: 'Achieve professional sound' },
+      { name: 'tone', label: 'Tone (e.g. professional, playful)', defaultValue: 'innovative and inspiring' },
+      { name: 'max_length', label: 'Max Length (words)', defaultValue: '150' },
+    ],
+    icon: FileText,
+  },
+  {
+    id: 'seo-keywords',
+    name: 'SEO Keyword Ideas',
+    description: 'Generate SEO keyword ideas for a topic.',
+    category: 'SEO',
+    template: 'Provide a list of 10-15 long-tail and short-tail SEO keywords related to the main topic "[main_topic]". Consider keywords for [audience_type] who are looking for [user_intent]. Include some question-based keywords.',
+    placeholders: [
+      { name: 'main_topic', label: 'Main Topic', defaultValue: 'sustainable gardening' },
+      { name: 'audience_type', label: 'Audience Type (e.g. beginners, experts)', defaultValue: 'urban gardening beginners' },
+      { name: 'user_intent', label: 'User Intent (e.g. to learn, to buy)', defaultValue: 'to learn basic techniques' },
+    ],
+    icon: Search,
+  },
+];
