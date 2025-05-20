@@ -6,13 +6,14 @@ export interface Placeholder {
   defaultValue?: string;
   maxLength?: number;
   isTextArea?: boolean; // Optional: Renders as Textarea if true
+  isRequired?: boolean; // Optional: Shows a "required" badge
 }
 
 export interface PromptTemplate {
   id: string;
   name:string;
   description: string;
-  category: string;
+  category: string; // e.g., "General", "Writing", "Business"
   template: string;
   placeholders: Placeholder[];
   icon?: LucideIcon;

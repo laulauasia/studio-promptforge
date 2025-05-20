@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PromptForge',
-  description: 'Generate and refine your prompts with ease.',
+  title: 'Ultimate AI Prompt Library',
+  description: 'Discover our extensive collection of the best AI prompts, including top ChatGPT prompts, Anthropic prompts, and Gemini prompts. Explore our free prompt library to enhance your AI productivity.',
 };
 
 export default function RootLayout({
