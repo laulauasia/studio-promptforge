@@ -15,13 +15,50 @@ export function CopyButton({ textToCopy, buttonText }: CopyButtonProps) {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(textToCopy);
-      toast({
-        title: 'Copied!',
-        description: 'Prompt copied to clipboard.',
-        className: 'bg-card text-foreground border-primary',
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(textToCopy);
+        toast({
+          title: 'Copied!',
+          description: 'Prompt copied to clipboard using modern API.',
+          className: 'bg-card text-foreground border-primary',
+        });
+      } else {
+        // Fallback for HTTP or older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = textToCopy;
+        // Make the textarea out of sight
+        textArea.style.position = 'fixed';
+        textArea.style.top = '-9999px';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            toast({
+              title: 'Copied!',
+              description: 'Prompt copied to clipboard using fallback.',
+              className: 'bg-card text-foreground border-primary',
+            });
+          } else {
+            throw new Error('Fallback copy command failed');
+          }
+        } catch (fallbackErr) {
+          console.error('Fallback copy failed: ', fallbackErr);
+          toast({
+            title: 'Error',
+            description: 'Failed to copy prompt using fallback.',
+            variant: 'destructive',
+          });
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
     } catch (err) {
+      // This catch block handles errors from the primary (navigator.clipboard) attempt
+      // if it exists but still throws an error (e.g. permission denied)
+      // or if the fallback logic itself somehow has an unhandled issue (less likely).
       toast({
         title: 'Error',
         description: 'Failed to copy prompt.',
